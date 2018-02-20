@@ -181,6 +181,10 @@ export class CircleSeriesComponent implements OnChanges, OnInit {
   }
 
   getTooltipText({ tooltipLabel, value, seriesName, min, max}): string {
+    try {
+      tooltipLabel = JSON.parse(tooltipLabel).tooltipLabel || JSON.parse(tooltipLabel).label
+    } catch(e) { console.error(e) }
+
     return `
       <span class="tooltip-label">${seriesName} • ${tooltipLabel}</span>
       <span class="tooltip-val">${value.toLocaleString()}${this.getTooltipMinMaxText(min, max)}</span>

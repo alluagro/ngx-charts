@@ -19,13 +19,13 @@ import { reduceTicks } from './ticks.helper';
     <svg:g #ticksel>
       <svg:g *ngFor="let tick of ticks" class="tick"
         [attr.transform]="tickTransform(tick)">
-        <title>{{tickFormat(tick)}}</title>
+        <title>{{ tickFormat( getTitle(tick) ) }}</title>
         <svg:text
           stroke-width="0.01"
           [attr.text-anchor]="textAnchor"
           [attr.transform]="textTransform"
           [style.font-size]="'12px'">
-          {{trimLabel(tickFormat(tick))}}
+          {{ trimLabel( tickFormat( getLabel(tick) ) ) }}
         </svg:text>
       </svg:g>
     </svg:g>
@@ -84,6 +84,26 @@ export class XAxisTicksComponent implements OnChanges, AfterViewInit {
 
   ngAfterViewInit(): void {
     setTimeout(() => this.updateDims());
+  }
+
+  getLabel(tick):string {
+    let label = tick
+
+    try {
+      label = JSON.parse(tick).label
+    } catch(e) { console.error(e) }
+
+    return label
+  }
+
+  getTitle(tick):string {
+    let title = tick
+
+    try {
+      title = JSON.parse(tick).title
+    } catch(e) { console.error(e) }
+
+    return title
   }
 
   updateDims(): void {
