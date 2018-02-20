@@ -21,7 +21,7 @@ For more info, check out the [documentation](https://swimlane.gitbooks.io/ngx-ch
 - Line {
   name: STRING,
   series: [{
-    name: STRING || String({ name: STRING, title: STRING, tooltipLabel?:STRING })
+    name: STRING || String({ label: STRING, title: STRING, tooltipLabel?:STRING })
     value: NUMBER
   }]
 }

@@ -28,6 +28,8 @@ export declare class XAxisTicksComponent implements OnChanges, AfterViewInit {
     constructor();
     ngOnChanges(changes: SimpleChanges): void;
     ngAfterViewInit(): void;
+    getLabel(tick: any): string;
+    getTitle(tick: any): string;
     updateDims(): void;
     update(): void;
     getRotationAngle(ticks: any): number;
