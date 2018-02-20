@@ -90,8 +90,8 @@ export class XAxisTicksComponent implements OnChanges, AfterViewInit {
     let label = tick
 
     try {
-      label = JSON.parse(tick).label
-    } catch(e) { console.error(e) }
+      label = JSON.parse(tick).label || tick
+    } catch(e) { }
 
     return label
   }
@@ -100,8 +100,8 @@ export class XAxisTicksComponent implements OnChanges, AfterViewInit {
     let title = tick
 
     try {
-      title = JSON.parse(tick).title
-    } catch(e) { console.error(e) }
+      title = JSON.parse(tick).title || tick
+    } catch(e) { }
 
     return title
   }
@@ -152,8 +152,11 @@ export class XAxisTicksComponent implements OnChanges, AfterViewInit {
 
   getRotationAngle(ticks): number {
     let angle = 0;
+
     for (let i = 0; i < ticks.length; i++) {
-      const tick = ticks[i].toString();
+      console.log(ticks[i])
+      console.log(this.getLabel(ticks[i]))
+      const tick = this.getLabel(ticks[i]);
       if (tick.length > this.maxTicksLength) {
         this.maxTicksLength = tick.length;
       }
