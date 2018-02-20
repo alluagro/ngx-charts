@@ -98,13 +98,14 @@ var CircleSeriesComponent = /** @class */ (function () {
     };
     CircleSeriesComponent.prototype.getTooltipText = function (_a) {
         var tooltipLabel = _a.tooltipLabel, value = _a.value, seriesName = _a.seriesName, min = _a.min, max = _a.max;
+        var tpLabel = tooltipLabel;
         try {
-            tooltipLabel = JSON.parse(tooltipLabel).tooltipLabel || JSON.parse(tooltipLabel).label;
+            tpLabel = JSON.parse(tooltipLabel).tooltipLabel || JSON.parse(tooltipLabel).label;
         }
         catch (e) {
-            console.error(e);
+            tpLabel = tooltipLabel;
         }
-        return "\n      <span class=\"tooltip-label\">" + seriesName + " \u2022 " + tooltipLabel + "</span>\n      <span class=\"tooltip-val\">" + value.toLocaleString() + this.getTooltipMinMaxText(min, max) + "</span>\n    ";
+        return "\n      <span class=\"tooltip-label\">" + seriesName + " \u2022 " + tpLabel + "</span>\n      <span class=\"tooltip-val\">" + value.toLocaleString() + this.getTooltipMinMaxText(min, max) + "</span>\n    ";
     };
     CircleSeriesComponent.prototype.getTooltipMinMaxText = function (min, max) {
         if (min !== undefined || max !== undefined) {

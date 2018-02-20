@@ -37,21 +37,17 @@ var XAxisTicksComponent = /** @class */ (function () {
     XAxisTicksComponent.prototype.getLabel = function (tick) {
         var label = tick;
         try {
-            label = JSON.parse(tick).label;
+            label = JSON.parse(tick).label || tick;
         }
-        catch (e) {
-            console.error(e);
-        }
+        catch (e) { }
         return label;
     };
     XAxisTicksComponent.prototype.getTitle = function (tick) {
         var title = tick;
         try {
-            title = JSON.parse(tick).title;
+            title = JSON.parse(tick).title || tick;
         }
-        catch (e) {
-            console.error(e);
-        }
+        catch (e) { }
         return title;
     };
     XAxisTicksComponent.prototype.updateDims = function () {
@@ -99,7 +95,9 @@ var XAxisTicksComponent = /** @class */ (function () {
     XAxisTicksComponent.prototype.getRotationAngle = function (ticks) {
         var angle = 0;
         for (var i = 0; i < ticks.length; i++) {
-            var tick = ticks[i].toString();
+            console.log(ticks[i]);
+            console.log(this.getLabel(ticks[i]));
+            var tick = this.getLabel(ticks[i]);
             if (tick.length > this.maxTicksLength) {
                 this.maxTicksLength = tick.length;
             }
