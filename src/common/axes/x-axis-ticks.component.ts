@@ -154,8 +154,6 @@ export class XAxisTicksComponent implements OnChanges, AfterViewInit {
     let angle = 0;
 
     for (let i = 0; i < ticks.length; i++) {
-      console.log(ticks[i])
-      console.log(this.getLabel(ticks[i]))
       const tick = this.getLabel(ticks[i]);
       if (tick.length > this.maxTicksLength) {
         this.maxTicksLength = tick.length;

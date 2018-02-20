@@ -8331,8 +8331,6 @@ var XAxisTicksComponent = /** @class */ (function () {
     XAxisTicksComponent.prototype.getRotationAngle = function (ticks) {
         var angle = 0;
         for (var i = 0; i < ticks.length; i++) {
-            console.log(ticks[i]);
-            console.log(this.getLabel(ticks[i]));
             var tick = this.getLabel(ticks[i]);
             if (tick.length > this.maxTicksLength) {
                 this.maxTicksLength = tick.length;
